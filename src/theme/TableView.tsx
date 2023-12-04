@@ -1,10 +1,9 @@
-import { ApolloClient, InMemoryCache, useQuery } from "@apollo/client";
-
 import React, { useState } from "react";
 import { LIST_COUNTRIES } from "../query";
 import "./Table.css";
 import "./Table2.css";
 import { Pagination } from "@heathmont/moon-core-tw";
+import { useQuery } from "@apollo/client";
 interface Country {
   code: string;
   name: string;
@@ -21,11 +20,6 @@ const makeData = (countries: Country[]) => {
   }));
 };
 
-const client = new ApolloClient({
-  cache: new InMemoryCache(),
-  uri: "https://countries.trevorblades.com",
-});
-
 export const TableView = () => {
   const [filter, setFilter] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -33,7 +27,6 @@ export const TableView = () => {
   const itemsPerPage = 10;
 
   const { loading, error, data } = useQuery<CountriesData>(LIST_COUNTRIES, {
-    client,
     variables: {
       page: currentPage,
       perPage: itemsPerPage,
@@ -44,23 +37,21 @@ export const TableView = () => {
     setCurrentPage(newPage);
   };
 
- 
   const filteredCountries = data
     ? data.countries.filter((country) =>
         country.code.toLowerCase().includes(filter.toLowerCase())
       )
     : [];
 
-
-    const totalPages = Math.ceil(filteredCountries.length / itemsPerPage);
-    const validCurrentPage = Math.max(1, Math.min(currentPage, totalPages));
-    const startIndex = (validCurrentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const slicedCountries = filteredCountries.slice(startIndex, endIndex);
-    const tableData = makeData(slicedCountries);
+  const totalPages = Math.ceil(filteredCountries.length / itemsPerPage);
+  const validCurrentPage = Math.max(1, Math.min(currentPage, totalPages));
+  const startIndex = (validCurrentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const slicedCountries = filteredCountries.slice(startIndex, endIndex);
+  const tableData = makeData(slicedCountries);
 
   console.log("Data:", data);
-  
+
   return (
     <div className="container">
       <div className="centered">
@@ -74,6 +65,7 @@ export const TableView = () => {
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
           className="input"
+          data-testid="input-view"
         />
       </div>
 
@@ -82,7 +74,10 @@ export const TableView = () => {
 
       {data && (
         <>
-          <table className={toggle ? "custom-table" : "react-table" }>
+          <table
+            data-testid="table-view"
+            className={toggle ? "custom-table" : "react-table"}
+          >
             <thead>
               <tr>
                 <th>Country Code</th>
@@ -98,7 +93,7 @@ export const TableView = () => {
               ))}
             </tbody>
           </table>
-          <div className="pagination">
+          <div className="pagination" data-testid="pagiantion-view">
             <Pagination
               totalPages={Math.ceil(filteredCountries.length / itemsPerPage)}
               currentPage={currentPage}
@@ -112,7 +107,11 @@ export const TableView = () => {
           <div></div>
         </>
       )}
-      <button className="toggle-button" onClick={() => setToggle(!toggle)}>
+      <button
+        data-testid="button-view"
+        className="toggle-button"
+        onClick={() => setToggle(!toggle)}
+      >
         {toggle ? "Normal" : "Interactive"}
       </button>
     </div>
