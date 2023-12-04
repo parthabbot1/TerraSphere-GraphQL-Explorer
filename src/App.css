@@ -1,0 +1,8 @@
+/* Resetting default margin and padding */
+* {
+  margin: 15;
+  padding: 15;
+  box-sizing: border-box;
+  
+}
+
