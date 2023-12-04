@@ -6,7 +6,7 @@ It also includes pagination and toggle to switch designs of the table. The toggl
 
 I have also used some Moon.io components(by yolo) as well. 
 
-I have not used any other external component or Ui library and the code is written with pure HTML CSS styles.(No 3rd party Ui library has been used except for Yolo)
+I have not used any other external component or Ui library and the code is written with pure HTML CSS styles.(No 3rd party Ui library has been used except for Moon.io)
 
 ## Table of Contents
 
