@@ -1,10 +1,12 @@
 # Assignment-Yolo
 
-Interactive table to show country data and filter the data based on country code.
+Interactive table to show country data and filter the data based on country code. The table queries the data using Graph ql.
 
-It also includes pagination and toggle to switch designs of the table.
+It also includes pagination and toggle to switch designs of the table. The toggle turns on the interactive mode
 
-I ave used some Moon.io components(by yolo ) s would need to set up tailwind also
+I have also used some Moon.io components(by yolo) as well. 
+
+I have not used any other external component or Ui library and the code is written with pure HTML CSS styles.(NO 3rd party Ui library has been used)
 
 ## Table of Contents
 
@@ -30,10 +32,10 @@ These instructions will help you get a copy of the project up and running on you
 A step-by-step guide on how to install and set up the project.
 
 # Clone the repository
-git clone https://github.com/your-username/your-project.git
+git clone https://github.com/parthabbot1/assignment.git
 
 # Change into the project directory
-cd your-project
+cd assignment
 
 # Install dependencies
 npm install
