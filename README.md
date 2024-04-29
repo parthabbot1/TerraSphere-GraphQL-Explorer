@@ -1,4 +1,4 @@
-# Assignment-Yolo
+# TerraSphere GraphQL Explorer
 
 Interactive table to show country data and filter the data based on country code. The table queries the data using Graph ql.
 
